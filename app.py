@@ -144,7 +144,7 @@ def login():
 
         # Query database for username
         with engine.begin() as db:
-            rows = db.execute(text("SELECT hash FROM users WHERE username = :u"),
+            rows = db.execute(text("SELECT id, hash FROM users WHERE username = :u"),
                               {"u": request.form.get("username")}).all()
             # Ensure username exists and password is correct
             if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
@@ -204,8 +204,8 @@ def register():
         # Check if username already exists
         with engine.begin() as db:
             try:
-               db.execute(text("SELECT id FROM users WHERE username = :u"),
-                                {"u": request.form.get("username")}).one()
+                db.execute(text("SELECT id FROM users WHERE username = :u"),
+                           {"u": request.form.get("username")}).one()
             except:
                 return apology("Username already exists")
             hash = generate_password_hash(password)
@@ -221,7 +221,7 @@ def sell():
     if request.method == "GET":
         with engine.begin() as db:
             assets = db.execute(text(
-                "SELECT symbol FROM assets WHERE user_id=?"), {"id": session["user_id"]}).all()
+                "SELECT symbol FROM assets WHERE user_id= :id"), {"id": session["user_id"]}).all()
             return render_template("/sell.html", symbols=[row["symbol"] for row in assets])
     if request.method == "POST":
         symbol = request.form.get("symbol")
@@ -253,10 +253,14 @@ def sell():
 
             # add transaction
             db.execute(text("INSERT INTO transactions (user_id, datetime, symbol, amount, ppu) VALUES (:id, datetime('now'), :sy, :am, :ppu)"),
-                       {"id": session["user_id"], "sy": symbol, "am": shares, "ppu": ppu})
+                       {"id": session["user_id"], "sy": symbol, "am": -shares, "ppu": ppu})
 
             #  update asset list
-            db.execute(text("UPDATE assets SET amount = :am WHERE symbol = :sy AND user_id = :id"),
+            if (a-shares == 0):
+                db.execute(text("DELETE FROM assets WHERE symbol = :sy AND user_id = :id"), {
+                           "sy": symbol, "id": session["user_id"]})
+            else:
+                db.execute(text("UPDATE assets SET amount = :am WHERE symbol = :sy AND user_id = :id"),
                        {"am": a - shares, "sy": symbol, "id": session["user_id"]})
             # add cash
             db.execute(text("UPDATE users SET cash = :c WHERE id = :id"),
