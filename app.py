@@ -1,7 +1,8 @@
+from distutils.command.config import config
 import os
 
 # from cs50 import SQL
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine, text, URL
 from flask import Flask, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -22,10 +23,13 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-# Configure CS50 Library to use SQLite database
-# db = SQL("sqlite:///finance.db")
+# import db config from env
+from /etc/config.py import config
+for item in config:
+    exec('{KEY} = {VALUE}'.format(KEY = item, VALUE = repr(config[item])))
+db_url = URL.create(db_type, db_username, db_pass, db_port, db_file)
 # Configure SQLALchemy instead
-engine = create_engine("sqlite:///finance.db")
+engine = create_engine(db_url)
 
 
 # Make sure API key is set
