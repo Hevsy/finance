@@ -1,8 +1,10 @@
 from distutils.command.config import config
 import os
+import psycopg2
 
 # from cs50 import SQL
-from sqlalchemy import create_engine, text, URL
+from sqlalchemy import create_engine, text
+from sqlalchemy.engine import URL
 from flask import Flask, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -23,12 +25,15 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-# import db config from env
-from /etc/config.py import config
-for item in config:
-    exec('{KEY} = {VALUE}'.format(KEY = item, VALUE = repr(config[item])))
-db_url = URL.create(db_type, db_username, db_pass, db_port, db_file)
-# Configure SQLALchemy instead
+# import db config from etc/config
+from etc.config import db_config
+
+# Assign variables from db_config
+for item in db_config:
+    exec('{KEY} = {VALUE}'.format(KEY = item, VALUE = repr(db_config[item])))
+# Create db URL & engine
+db_url = URL.create(db_type, database = db_file, username = db_username, password = db_pass, host = db_port)
+
 engine = create_engine(db_url)
 
 
