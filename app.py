@@ -27,7 +27,11 @@ Session(app)
 
 # import db config from etc/config
 from etc.config import db_config
-db_type, db_file, db_username, db_pass, db_port = None
+db_type = None
+db_file = None
+db_username = None
+db_pass = None 
+db_port = None
 # Assign variables from db_config
 for item in db_config:
     exec('{KEY} = {VALUE}'.format(KEY = item, VALUE = repr(db_config[item])))
