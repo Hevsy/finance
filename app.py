@@ -40,10 +40,10 @@ db_url = URL.create(db_type, database = db_file, username = db_username, passwor
 
 engine = create_engine(db_url)
 
-
+# Hardcoded API key into config
 # Make sure API key is set
-if not os.environ.get("API_KEY"):
-    raise RuntimeError("API_KEY not set")
+# if not os.environ.get("API_KEY"):
+#    raise RuntimeError("API_KEY not set")
 
 
 @app.after_request
