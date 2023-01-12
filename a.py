@@ -8,7 +8,7 @@ for item in db_config:
 print (db_username)
 print (db_file)
 
-db_url = URL.create(db_type, database = db_file, username = db_username, password = db_pass, host = db_port)
+db_url = URL.create(db_type, database = db_file, username = db_username, password = db_pass, host = db_host)
 print(db_url)
 # Configure SQLALchemy instead
 engine = create_engine(db_url)
