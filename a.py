@@ -1,5 +1,5 @@
 from etc.config import db_config
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.engine import URL
 
 for item in db_config:
@@ -13,3 +13,13 @@ print(db_url)
 # Configure SQLALchemy instead
 engine = create_engine(db_url)
 print(engine)
+
+with engine.connect() as db:
+    id = "1"
+    with db.begin():
+        assets = db.execute(
+            text("SELECT symbol, amount FROM assets WHERE user_id= :id"), {"id": id}).all()
+        #print(assets.all())
+        for row in assets:
+            print(row["symbol"])
+            print(row["amount"])

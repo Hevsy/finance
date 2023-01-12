@@ -3,7 +3,7 @@ db_config = {
     "db_username" : "postgres", 
     "db_pass" : "postgres-fin", 
     "db_host" : "db-finance1.cxhmztea6vcv.us-east-1.rds.amazonaws.com", 
-    "db_file" :"finance.db"
+    "db_file" :"finance"
 }
 API_KEY = "pk_0da1f4d89cdb4da29c7544d6a3b55c8a"
 
