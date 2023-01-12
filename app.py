@@ -31,12 +31,12 @@ db_type = None
 db_file = None
 db_username = None
 db_pass = None 
-db_port = None
+db_host = None
 # Assign variables from db_config
 for item in db_config:
     exec('{KEY} = {VALUE}'.format(KEY = item, VALUE = repr(db_config[item])))
 # Create db URL & engine
-db_url = URL.create(db_type, database = db_file, username = db_username, password = db_pass, host = db_port)
+db_url = URL.create(db_type, database = db_file, username = db_username, password = db_pass, host = db_host)
 
 engine = create_engine(db_url)
 
