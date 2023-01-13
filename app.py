@@ -105,7 +105,7 @@ def buy():
                 return apology("Insufficient funds for this operation")
 
             # add transaction
-            db.execute(text("INSERT INTO transactions (user_id, datetime, symbol, amount, ppu) VALUES (:id, datetime('now'), :sy, :am, :ppu)"),
+            db.execute(text("INSERT INTO transactions (user_id, datetime, symbol, amount, ppu) VALUES (:id, NOW(), :sy, :am, :ppu)"),
                        {"id": session["user_id"], "sy": symbol, "am": shares, "ppu": ppu})
 
             # add asset
@@ -216,15 +216,16 @@ def register():
 
         # Check if username already exists
         with engine.begin() as db:
-            try:
-                db.execute(text("SELECT id FROM users WHERE username = :u"),
-                           {"u": request.form.get("username")}).one()
-            except:
+            result = db.execute(text('SELECT id FROM users WHERE username = :u'), {'u': username})
+            print (result.rowcount)
+            if result.rowcount > 0:
+                # return apology("Username already exists")
                 return apology("Username already exists")
-            hash = generate_password_hash(password)
-            db.execute(text(
-                "INSERT INTO users (username, hash) VALUES (:u, :h)"), {"u": username, "h": hash})
-            return redirect("/login")
+            else:
+                hash = generate_password_hash(password)
+                db.execute(text(
+                    "INSERT INTO users (username, hash) VALUES (:u, :h)"), {"u": username, "h": hash})
+                return redirect("/login")
 
 
 @ app.route("/sell", methods=["GET", "POST"])
@@ -265,7 +266,7 @@ def sell():
             ppu = float(quote["price"])
 
             # add transaction
-            db.execute(text("INSERT INTO transactions (user_id, datetime, symbol, amount, ppu) VALUES (:id, datetime('now'), :sy, :am, :ppu)"),
+            db.execute(text("INSERT INTO transactions (user_id, datetime, symbol, amount, ppu) VALUES (:id, NOW(), :sy, :am, :ppu)"),
                        {"id": session["user_id"], "sy": symbol, "am": -shares, "ppu": ppu})
 
             #  update asset list

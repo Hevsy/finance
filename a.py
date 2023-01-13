@@ -14,12 +14,10 @@ print(db_url)
 engine = create_engine(db_url)
 print(engine)
 
-with engine.connect() as db:
+with engine.begin() as db:
     id = "1"
-    with db.begin():
-        assets = db.execute(
-            text("SELECT symbol, amount FROM assets WHERE user_id= :id"), {"id": id}).all()
-        #print(assets.all())
-        for row in assets:
-            print(row["symbol"])
-            print(row["amount"])
+    assets = db.execute(text("SELECT symbol, amount FROM assets WHERE user_id= :id"), {"id": id}).all()
+    #print(assets.all())
+    for row in assets:
+        print(row["symbol"])
+        print(row["amount"])
