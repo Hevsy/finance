@@ -1,4 +1,9 @@
 __pycache__/
+etc/__pycache__/
 flask_session/
 # sql_test/
 .a.py.swp
+venv/
+venv
+db_dump/
+sql_test/
