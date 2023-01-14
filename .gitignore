@@ -7,3 +7,4 @@ venv/
 venv
 db_dump/
 sql_test/
+finance.db
