@@ -1,4 +1,4 @@
-#!/home/ubuntu/webapp/finance/venv/bin/python3
+#!/mnt/c/Users/Paul/code/finance/venv/bin/python
 
 import sys
 import json

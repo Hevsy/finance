@@ -1,4 +1,8 @@
-cs50
+boto3
 Flask
 Flask-Session
+psycopg2
+pycodestyle
 requests
+SQLAlchemy
+SQLAlchemy-Utils

@@ -6,9 +6,7 @@ def param_get(param_name):
     ssm = boto3.client('ssm')
 
     # Get the value of the parameter
-    return = ssm.get_parameter(
-        Name=param_name
-    )
+    return ssm.get_parameter(Name=param_name)
 
 
 db_config = {

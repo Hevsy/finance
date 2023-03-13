@@ -2,3 +2,5 @@ __pycache__/
 flask_session/
 # sql_test/
 .a.py.swp
+venv
+venv/
