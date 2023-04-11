@@ -1,4 +1,21 @@
-# finance
-Deploying CS50 Finance to AWS
+# Finance App
+
+This is a web-based finance application built using Flask, PostgreSQL, and IEX API for stock data.
+The application allows users to buy and sell stocks, and view their transaction history and portfolio. Users can also look up real-time stock prices and information. allows users to manage their stock protfolio
+
+## AWS Services Used
+* Amazon Elastic Compute Cloud (EC2)
+* Amazon Relational Database Service (RDS) - PostgresSQL
+* Amazon Virtual Private Cloud (VPC)
+* Amazon Application Load Balancer
+* Amazon Auto Scaling Group
+For the Cloudfromation tempalte of the infreastracture refer to the [cfn-finance repository](https://github.com/Hevsy/cfn-finance) 
+
+## AWS Infrastructure diagram
+
+ 1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Hevsy/finance.git
 
 ![Diagram](https://lucid.app/publicSegments/view/690ffa1c-37ba-436e-b176-3311bd715e40/image.png)
