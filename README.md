@@ -13,9 +13,4 @@ For the Cloudfromation tempalte of the infreastracture refer to the [cfn-finance
 
 ## AWS Infrastructure diagram
 
- 1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/Hevsy/finance.git
-
 ![Diagram](https://lucid.app/publicSegments/view/690ffa1c-37ba-436e-b176-3311bd715e40/image.png)
