@@ -10,7 +10,7 @@ The application allows users to buy and sell stocks, and view their transaction 
 * Amazon Application Load Balancer
 * Amazon Auto Scaling Group
 
-For the Cloudfromation tempalte of the infreastracture refer to the [cfn-finance repository](https://github.com/Hevsy/cfn-finance) 
+For the Cloudfromation template of the AWS infreastracture refer to the [cfn-finance repository](https://github.com/Hevsy/cfn-finance) 
 
 ## AWS Infrastructure diagram
 
