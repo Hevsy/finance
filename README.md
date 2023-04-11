@@ -1,7 +1,7 @@
 # Finance App
 
 This is a web-based finance application built using Flask, PostgreSQL, and IEX API for stock data.
-The application allows users to buy and sell stocks, and view their transaction history and portfolio. Users can also look up real-time stock prices and information. allows users to manage their stock protfolio
+The application allows users to buy and sell stocks, and view their transaction history and portfolio. Users can also look up real-time stock prices and information. 
 
 ## AWS Services Used
 * Amazon Elastic Compute Cloud (EC2)
